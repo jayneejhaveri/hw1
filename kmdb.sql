@@ -109,6 +109,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS characters;
 
 -- Create the rest of the tables
 
@@ -129,9 +130,17 @@ CREATE TABLE studios (
 
 CREATE TABLE actors (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT,
-  movies_id INTEGER,  
-  character_name TEXT
+  first_name TEXT, 
+  last_name TEXT
+);
+
+CREATE TABLE characters (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  first_name TEXT, 
+  last_name TEXT,
+  actor_first_name TEXT,
+  actor_last_name TEXT,
+  movie_title TEXT
 );
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
@@ -145,6 +154,19 @@ VALUES
 INSERT INTO studios (id, name)
 VALUES (1, "Warner Bros.");
 
+INSERT INTO actors (id, first_name, last_name)
+VALUES 
+(1, "Christian", "Bale"),
+(2, "Michael", "Caine"),
+(3, "Liam", "Neeson"),
+(4, "Katie", "Holmes"),
+(5, "Gary", "Oldman"),
+(6,"Heath", "Ledger"),
+(7, "Aaron", "Eckhart"),
+(8,"Maggie", "Gyllenhaal"),
+(9,"Tom", "Hardy"),
+(10,"Joseph", "Gordon-Levitt"),
+(11,"Anne", "Hathaway");
 
 -- Prints a header for the movies output
 .print "Movies"
