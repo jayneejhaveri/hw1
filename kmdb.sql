@@ -168,7 +168,22 @@ VALUES
 
 INSERT INTO characters (id, name, actor_id, movie_id)
 VALUES
-(1, "Bruce Wayne", 1, 1);
+(1, "Bruce Wayne", 1, 1),
+(2, "Alfred", 2, 1),
+(3, "Ra's Al Ghul", 3, 1),
+(4, "Bruce Wayne", 1, 2),
+(5, "Rachel Dawes", 4, 1),
+(6, "Commissioner Gordon", 5, 1),
+(7, "Joker", 6, 2),
+(8, "Harvey Dent",7, 2),
+(9, "Alfred", 2, 2),
+(10,"Rachel Dawes", 8, 2),
+(11, "Bruce Wayne",1,3),
+(12, "Commissioner Gordon", 5, 3),
+(13, "Bane", 9, 3),
+(14,"John Blake", 10,3),
+(15, "Selina Kyle", 11,3);
+
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -190,6 +205,7 @@ INNER JOIN studios ON movies.studio_id = studios.id;
 
 -- The SQL statement for the cast output
 -- TODO!
-SELECT title, first_name, last_name, characters.name 
-FROM characters INNER JOIN actors ON characters.actor_id = actors.id
-INNER JOIN movies ON movies.id = characters.movie_id;
+SELECT movies.title, first_name, last_name, characters.name FROM characters 
+INNER JOIN actors ON characters.actor_id = actors.id
+INNER JOIN movies ON characters.movie_id = movies.id
+ORDER BY movies.id;
