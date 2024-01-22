@@ -120,7 +120,7 @@ CREATE TABLE movies (
   title TEXT,
   year_released INTEGER,
   MPAA_rating TEXT,
-  studio TEXT
+  studio_id INTEGER
 );
 
 CREATE TABLE studios (
@@ -136,20 +136,18 @@ CREATE TABLE actors (
 
 CREATE TABLE characters (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  first_name TEXT, 
-  last_name TEXT,
-  actor_first_name TEXT,
-  actor_last_name TEXT,
-  movie_title TEXT
+  name TEXT, 
+  actor_id INTEGER,
+  movie_id INTEGER
 );
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
-INSERT INTO movies (id, title, year_released, MPAA_rating, studio) 
+INSERT INTO movies (id, title, year_released, MPAA_rating, studio_id) 
 VALUES
- (1, "Batman Begins", 2005, "PG-13", "Warner Bros."),
- (2, "The Dark Knight", 2008, "PG-13", "Warner Bros."),
- (3, "The Dark Knight Rises", 2012, "PG-13", "Warner Bros.");
+ (1, "Batman Begins", 2005, "PG-13", 1),
+ (2, "The Dark Knight", 2008, "PG-13", 1),
+ (3, "The Dark Knight Rises", 2012, "PG-13", 1);
 
 INSERT INTO studios (id, name)
 VALUES (1, "Warner Bros.");
@@ -168,6 +166,10 @@ VALUES
 (10,"Joseph", "Gordon-Levitt"),
 (11,"Anne", "Hathaway");
 
+INSERT INTO characters (id, name, actor_id, movie_id)
+VALUES
+(1, "Bruce Wayne", 1, 1);
+
 -- Prints a header for the movies output
 .print "Movies"
 .print "======"
@@ -175,6 +177,9 @@ VALUES
 
 -- The SQL statement for the movies output
 -- TODO!
+SELECT title, year_released, MPAA_rating, name FROM movies 
+INNER JOIN studios ON movies.studio_id = studios.id;
+
 
 -- Prints a header for the cast output
 .print ""
