@@ -119,8 +119,7 @@ CREATE TABLE movies (
   title TEXT,
   year_released INTEGER,
   MPAA_rating TEXT,
-  studio_id INTEGER, 
-  actor_name TEXT
+  studio TEXT
 );
 
 CREATE TABLE studios (
@@ -137,6 +136,15 @@ CREATE TABLE actors (
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
+INSERT INTO movies (id, title, year_released, MPAA_rating, studio) 
+VALUES
+ (1, "Batman Begins", 2005, "PG-13", "Warner Bros."),
+ (2, "The Dark Knight", 2008, "PG-13", "Warner Bros."),
+ (3, "The Dark Knight Rises", 2012, "PG-13", "Warner Bros.");
+
+INSERT INTO studios (id, name)
+VALUES (1, "Warner Bros.");
+
 
 -- Prints a header for the movies output
 .print "Movies"
